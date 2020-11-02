@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  content: MyText
+  exercise: MyText
+  duration: 1.5
+  skill_level: 1
+
+two:
+  title: MyString
+  description: MyString
+  content: MyText
+  exercise: MyText
+  duration: 1.5
+  skill_level: 1

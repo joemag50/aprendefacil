@@ -10,10 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_032741) do
+ActiveRecord::Schema.define(version: 2020_11_02_064616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.text "content"
+    t.text "exercise"
+    t.float "duration", default: 1.0
+    t.integer "skill_level", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "plan_activities", force: :cascade do |t|
+    t.bigint "plan_id"
+    t.bigint "activity_id"
+    t.integer "day"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_plan_activities_on_activity_id"
+    t.index ["plan_id"], name: "index_plan_activities_on_plan_id"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.bigint "user_id"
+    t.date "start"
+    t.date "final"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_plans_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,8 +56,13 @@ ActiveRecord::Schema.define(version: 2020_11_02_032741) do
     t.datetime "started_since"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role", default: 1
+    t.integer "days_per_week", default: 7
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "plan_activities", "activities"
+  add_foreign_key "plan_activities", "plans"
+  add_foreign_key "plans", "users"
 end

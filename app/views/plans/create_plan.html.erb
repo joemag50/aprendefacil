@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Plan</h1>
+
+<p>
+  <strong>Start:</strong>
+  <%= @plan.start %>
+</p>
+
+<p>
+  <strong>Final:</strong>
+  <%= @plan.final %>
+</p>
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Content</th>
+      <th>Exercise</th>
+      <th>Duration</th>
+      <th>Skill level</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plan.plan_activities.each do |plan_activity| %>
+      <tr>
+        <td><%= plan_activity.day %></td>
+        <td><%= plan_activity.activity.title[0..25] unless plan_activity.activity.title.nil? %></td>
+        <td><%= plan_activity.activity.description[0..25] unless plan_activity.activity.description.nil? %></td>
+        <td><%= plan_activity.activity.content[0..25] unless plan_activity.activity.content.nil? %></td>
+        <td><%= plan_activity.activity.exercise[0..25] unless plan_activity.activity.exercise.nil? %></td>
+        <td><%= plan_activity.activity.duration %></td>
+        <td><%= plan_activity.activity.skill_level %></td>
+        <td><%= link_to 'Show', plan_activity.activity %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

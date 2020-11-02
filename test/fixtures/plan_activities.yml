@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plan: one
+  activity: one
+  day: 1
+  status: 1
+
+two:
+  plan: two
+  activity: two
+  day: 1
+  status: 1

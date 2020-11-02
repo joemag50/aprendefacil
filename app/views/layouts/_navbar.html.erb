@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <%= link_to 'Aprende Facil', root_url, class: 'navbar-brand' %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav ml-auto">
+      <%- if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to current_user.email, '#', class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Cerrar sesión', destroy_user_session_url, method: :delete, class: 'nav-link' %>
+        </li>
+      <%- else %>
+        <li class="nav-item">
+          <%= link_to 'Crear cuenta', new_user_registration_url, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Iniciar sesión', new_user_session_url, class: 'nav-link' %>
+        </li>
+      <%- end %>
+    </ul>
+  </div>
+</nav>

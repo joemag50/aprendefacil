@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Regresar', plans_url, class: 'btn btn-outline-secondary' %>
+<%= link_to 'Marcar como completado', plan_activity_complete_activity_url(plan_activity_id: @plan_activity.id), class: "btn btn-primary", method: :post %>
+
+<ul class="nav nav-tabs mt-5">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#home">Introducción</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#content">Contenido</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#excercise">Ejercicio</a>
+  </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade show active" id="home">
+    <p>
+      <strong>Title:</strong>
+      <%= @activity.title %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @activity.description %>
+    </p>
+  </div>
+  <div class="tab-pane fade" id="content">
+    <p>
+      <%= @activity.content %>
+    </p>
+  </div>
+  <div class="tab-pane fade" id="excercise">
+    <p>
+      <strong>Exercise:</strong>
+      <%= @activity.exercise %>
+    </p>
+
+    <p>
+      <strong>Duration:</strong>
+      <%= @activity.duration %>
+    </p>
+
+    <p>
+      <strong>Skill level:</strong>
+      <%= @activity.skill_level %>
+    </p>
+  </div>
+</div>

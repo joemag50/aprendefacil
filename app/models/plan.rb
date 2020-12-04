@@ -3,7 +3,7 @@ class Plan < ApplicationRecord
   has_many :plan_activities, dependent: :destroy
   has_many :activities, through: :plan_activities
 
-  def generate_or_find(days = 7, activities_per_day = 1)
+  def generate_or_find(days = 5, activities_per_day = 1)
     plan_activities and return unless plan_activities.empty?
     activity_count = Activity.count
 
@@ -15,5 +15,9 @@ class Plan < ApplicationRecord
     end
     self.update_attribute(:final, Time.now + days.days)
     plan_activities
+  end
+
+  def is_plan_completed?
+    !plan_activities.map(&:status).include?(false)
   end
 end

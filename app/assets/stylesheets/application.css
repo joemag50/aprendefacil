@@ -42,3 +42,42 @@
     color: #468847;
     text-align: left;
  }
+
+.bg-1 {
+    background-color: #EBB0D8 !important;
+}
+
+.bg-2 {
+    background-color: #E9C6F5 !important;
+}
+
+.bg-3 {
+    background-color: #BBAED9 !important;
+}
+
+.bg-4 {
+    background-color: #95A1F0 !important;
+}
+
+.bg-5 {
+    background-color: #73B2E6 !important;
+}
+
+.btn-created {
+    background-color: #fff !important;
+    border-color: #ccc !important;
+    color: #17141f !important;
+}
+
+.btn-viewed {
+    color: #fff !important;
+    background-color: #efa31d !important;
+    border-color: #efa31d !important;
+}
+
+.btn-completed {
+    color: #fff !important;
+    background-color: #13b955 !important;
+    border-color: #13b955 !important;
+}
+

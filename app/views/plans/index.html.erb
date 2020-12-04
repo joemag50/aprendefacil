@@ -3,7 +3,7 @@
 <h1>Plans</h1>
 <%= link_to 'Crear plan', create_plan_plans_url %>
 
-<% @plans.each do |plan| %>
+<% @plans.order(id: :desc).each do |plan| %>
   <p>
     <strong>Start:</strong>
     <%= plan.start %>
@@ -14,37 +14,27 @@
     <%= plan.final %>
   </p>
 
+  <div class="container">
+    <div class="row">
+      <% plan.plan_activities.order(:id).each do |plan_activity| %>
+        <div class="col" style="padding: 0px">
+          <div class="card text-white bg-<%= plan_activity.day %> mb-3" style="max-width: 20rem;">
+            <div class="card-header">Actividad día: <%= plan_activity.day %></div>
+            <div class="card-body">
+              <h4 class="card-title"><%= plan_activity.activity.title unless plan_activity.activity.title.nil? %></h4>
+              <p class="card-text"><%= plan_activity.activity.description  unless plan_activity.activity.description.nil? %></p>
 
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Day</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Content</th>
-        <th>Exercise</th>
-        <th>Duration</th>
-        <th>Skill level</th>
-        <th colspan="1"></th>
-      </tr>
-    </thead>
+              <p><b>Duration:</b> <%= plan_activity.activity.duration %></p>
+              <p><b>Nivel:</b> <%= plan_activity.activity.skill_level %></p>
+              <p><b>Status:</b> <%= plan_activity.status %></p>
 
-    <tbody>
-      <% plan.plan_activities.each do |plan_activity| %>
-        <tr>
-          <td><%= plan_activity.day %></td>
-          <td><%= plan_activity.activity.title[0..25] unless plan_activity.activity.title.nil? %></td>
-          <td><%= plan_activity.activity.description[0..25] unless plan_activity.activity.description.nil? %></td>
-          <td><%= plan_activity.activity.content[0..25] unless plan_activity.activity.content.nil? %></td>
-          <td><%= plan_activity.activity.exercise[0..25] unless plan_activity.activity.exercise.nil? %></td>
-          <td><%= plan_activity.activity.duration %></td>
-          <td><%= plan_activity.activity.skill_level %></td>
-          <td><%= link_to 'Show', plan_activity.activity %></td>
-        </tr>
+              <td><%= link_to 'Mostrar', plan_activity, class: "btn btn-#{plan_activity.status}" %></td>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </tbody>
-  </table>
-
+    </div>
+  </div>
   <br>
   <hr>
   <br>

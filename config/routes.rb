@@ -4,6 +4,12 @@ Rails.application.routes.draw do
     collection do
       get :create_plan
     end
+
+    member do
+      resources :plan_activities, only: :show do
+        post :complete_activity
+      end
+    end
   end
 
   devise_for :users

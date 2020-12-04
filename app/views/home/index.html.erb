@@ -1,0 +1,23 @@
+
+
+<h2>Bienvenido!</h2>
+
+<p>Te guiaremos para que logres ser un mejor programador cada día</p>
+
+
+<%- if user_signed_in? %>
+  <p>Tienes que completar cada plan de actividades para seguir subiendo de nivel</p>
+
+  <p>Tu nivel actual es: <%= current_user.actual_level %></p>
+  <p>Puedes actualizar tu informacion en tu perfil</p>
+
+  <p>Sugerimos que inicies un plan si no tienes uno</p>
+
+  <%= link_to 'Generar nuevo plan', create_plan_plans_url, class: 'btn btn-primary active' %>
+
+  <p>Cada vez que completes un plan, podrás generar uno nuevo</p>
+<% else %>
+  <p>Crea una nueva cuenta para iniciar tu nuevo camino!</p>
+
+  <%= link_to 'Crear cuenta', new_user_registration_url, class: 'btn btn-primary active' %>
+<% end %>
